@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>	
+    <arg name="robot_name" default="iiwa"/>
+    <rosparam file="$(find kuka_moveit_joy)/param/config.yaml" command="load"/>    
+
+    <group ns="$(arg robot_name)">
+       <node name="my_control" pkg="kuka_moveit_joy" type="control" respawn="false" output="screen">
+       </node>
+    </group>
+
+    <node name="iiwa_moveit_joy" pkg="joy" type="joy_node" respawn="false" output="screen">
+	<param name="autorepeat_rate" value="1"/>
+	
+    </node>
+</launch>
